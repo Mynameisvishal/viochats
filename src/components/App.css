@@ -1,0 +1,60 @@
+html,
+body,
+.app {
+  height: 100vh;
+  background: #eee;
+  padding: 1em;
+}
+
+/* Messages.js */
+.messages {
+  height: 355px;
+  overflow-y: scroll;
+}
+
+/* MessageForm.js */
+.message__form {
+  position: fixed !important;
+  bottom: 1em;
+  margin-left: 320px !important;
+  left: 0;
+  right: 1em;
+  z-index: 200;
+}
+
+/* Message.js */
+.message__self {
+  /* border-left: 2px solid orange; */
+  padding-left: 8px;
+  /* display: flex !important;
+  flex-direction: column !important; */
+}
+.ownmess{
+  font-weight: 500 !important;
+}
+.message__self .ownmess{
+  font-weight: 700 !important;
+}
+.message__self::before {
+  position: absolute !important;
+  content: "";
+  width: 40px;
+  height: 40px;
+  left: 45px !important;
+  border-left: 2px solid orange !important;
+  padding-left: 8px !important;
+}
+
+.message__image {
+  padding: 1em;
+}
+
+/* progressbar.js */
+.progress__bar{
+  margin: 0.3em 0 0 0 !important;
+}
+
+/* sidepanel.js */
+.menu{
+  padding-bottom: 2em;
+}
