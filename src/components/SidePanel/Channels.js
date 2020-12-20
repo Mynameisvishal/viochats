@@ -132,7 +132,7 @@ class Channels extends React.Component {
   clearNotifications = () => {
     let index = this.state.notification.findIndex(notifications => notifications.id === this.state.channel.id);
 
-    if (index !== 1) {
+    if (index !== -1) {
       let updatedNotifications = [...this.state.notification];
       updatedNotifications[index].total = this.state.notification[index].lastKnownTotal;
       updatedNotifications[index].count = 0;
