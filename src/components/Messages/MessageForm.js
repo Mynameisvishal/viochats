@@ -31,7 +31,11 @@ class MessageForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleKeyDown = ()=>{
+  handleKeyDown = (event)=>{
+    if(event.keyCode === 13){
+      this.sendMessage();
+    }
+    
     const { message, typingRef, channel , user } = this.state;
     if(message){
       console.log('typing');
@@ -211,7 +215,6 @@ class MessageForm extends React.Component {
             />
           )
         }
-        <Form onSubmit={this.sendMessage} >
         <Input
           fluid
           name="message"
@@ -233,7 +236,6 @@ class MessageForm extends React.Component {
           }
           placeholder="Write your message"
           />
-          </Form>
         <Button.Group icon widths="2">
           <Button
             onClick={this.sendMessage}
