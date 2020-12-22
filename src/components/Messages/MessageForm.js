@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuidv4 } from 'uuid';
 import firebase from "../../firebase";
-import { Segment, Button,Form, Input } from "semantic-ui-react";
+import { Segment, Button, Input } from "semantic-ui-react";
 import { Picker, emojiIndex} from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 import FileModal from "./FileModal";
@@ -23,6 +23,14 @@ class MessageForm extends React.Component {
     emojiPicker: false
   };
 
+  
+    componentWillUnmount(){
+      if(this.state.uploadTask!==null){
+        this.state.uploadTask.cancel();
+        this.setState({uploadTask: null});
+      }
+      
+    }
   openModal = () => this.setState({ modal: true });
 
   closeModal = () => this.setState({ modal: false });
@@ -30,8 +38,10 @@ class MessageForm extends React.Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  handleKeyDown = ()=>{
+  handleKeyDown = (event)=>{
+    if(event.keyCode === 13){
+      this.sendMessage();
+    }
     const { message, typingRef, channel , user } = this.state;
     if(message){
       console.log('typing');
@@ -92,7 +102,7 @@ class MessageForm extends React.Component {
     return message;
   };
 
-  sendMessage = () => {
+  sendMessage = (event) => {
     const { getMessageRef } = this.props;
     const { message, channel, typingRef,user } = this.state;
 
@@ -126,7 +136,7 @@ class MessageForm extends React.Component {
   getPath = () => {
     const isPrivateChannel = this.props.privateChannel;
     if (isPrivateChannel) {
-      return `chat/private-${this.state.channel.id}`;
+      return `chat/private/${this.state.channel.id}`;
     } else {
       return `chat/public`;
     }
@@ -211,7 +221,6 @@ class MessageForm extends React.Component {
             />
           )
         }
-        <Form onSubmit={this.sendMessage} >
         <Input
           fluid
           name="message"
@@ -233,7 +242,6 @@ class MessageForm extends React.Component {
           }
           placeholder="Write your message"
           />
-          </Form>
         <Button.Group icon widths="2">
           <Button
             onClick={this.sendMessage}
