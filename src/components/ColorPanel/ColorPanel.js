@@ -10,6 +10,7 @@ class ColorPanel extends React.Component {
     modal: false,
     primary:'',
     secondary:'',
+    user: this.props.currentUser,
     currentUser: this.props.currentUser,
     usersRef: firebase.database().ref('users'),
     userColor:[],

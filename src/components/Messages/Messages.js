@@ -35,7 +35,7 @@ class Messages extends React.Component {
     const { channel, user, listeners } = this.state;
 
     if (channel && user) {
-      this.removeListeners(listeners);
+      // this.removeListeners(listeners);
       this.addListeners(channel.id);
       this.addUserStarsListener(channel.id, user.uid);
     }
@@ -264,14 +264,14 @@ class Messages extends React.Component {
       </div>
     ));
 
-  // displayMessageSkeleton = loading =>
-  //   loading ? (
-  //     <React.Fragment>
-  //       {[...Array(10)].map((_, i) => (
-  //         <Skeleton key={i} />
-  //       ))}
-  //     </React.Fragment>
-  //   ) : null;
+  displayMessageSkeleton = loading =>
+    loading ? (
+      <React.Fragment>
+        {[...Array(10)].map((_, i) => (
+          <Skeleton key={i} />
+        ))}
+      </React.Fragment>
+    ) : null;
 
   render() {
     // prettier-ignore
@@ -291,7 +291,7 @@ class Messages extends React.Component {
 
         <Segment>
           <Comment.Group className="messages">
-            {/* {this.displayMessageSkeleton(messagesLoading)} */}
+            {this.displayMessageSkeleton(messagesLoading)}
             {searchTerm
               ? this.displayMessages(searchResults)
               : this.displayMessages(messages)}
