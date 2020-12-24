@@ -82,8 +82,8 @@ class MessageForm extends React.Component {
   handleAddEmoji =(emoji)=>{
     const oldMessage = this.state.message;
     const newMessage = this.colonToUnicode(`${oldMessage} ${emoji.colons}`);
-    this.setState({message: newMessage, emojiPicker: false});
-    setTimeout(()=> this.messageInputRef.focus(),0);
+    this.setState({message: newMessage});
+    // setTimeout(()=> this.messageInputRef.focus(),0);
   }
 
   createMessage = (fileUrl = null) => {
