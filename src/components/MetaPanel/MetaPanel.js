@@ -23,7 +23,6 @@ class MetaPanel extends React.Component {
       .sort((a,b)=> b[1] - a[1])
       .map(([key, val],i)=>(
         <List.Item key={i}>
-          {console.log(key)}
           <Image avatar src={val.avatar} />
           <List.Content>
             <List.Header as="a">{key}</List.Header>

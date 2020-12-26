@@ -28,6 +28,7 @@ class ColorPanel extends React.Component {
     this.state.usersRef
       .child(`${id}/colors`)
       .on('child_added',snap =>{
+        console.log(snap.val());
         userColor.unshift(snap.val());
         this.setState({userColor});
       })
@@ -74,11 +75,12 @@ class ColorPanel extends React.Component {
       <React.Fragment key={i}>
         <Divider />
         <div 
+          id={`${i}color`}
           className="color__container"
           onClick={()=>this.props.setColors(color.primary,color.secondary)}
         >
           <div className="color__square" style={{background: color.primary}}>
-            <div className="color__overlay" style={{background: color.secondary}}>
+          <div className="color__overlay" style={{background: color.secondary}}>
 
             </div>
           </div>
@@ -101,6 +103,18 @@ class ColorPanel extends React.Component {
       >
         <Divider />
         <Button icon="add" size="small" color="blue" onClick={this.openModal}/>
+        <Divider />
+        <div 
+          id="123ef"
+          className="color__container"
+          onClick={()=>this.props.setColors("#4c3c4c","#eee")}
+        >
+          <div id="#4c3c4c" className="color__square" style={{background: "#4c3c4c"}}>
+            <div id="#eee" className="color__overlay" style={{background: "#eee"}}>
+
+            </div>
+          </div>
+          </div>
         {this.displayUserColor(userColor)}
         {/* color Picker Modal  */}
         <Modal basic open={modal}>
