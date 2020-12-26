@@ -35,7 +35,7 @@ class Messages extends React.Component {
     const { channel, user, listeners } = this.state;
 
     if (channel && user) {
-      // this.removeListeners(listeners);
+      this.removeListeners(listeners);
       this.addListeners(channel.id);
       this.addUserStarsListener(channel.id, user.uid);
     }
@@ -305,7 +305,7 @@ class Messages extends React.Component {
           currentChannel={channel}
           currentUser={user}
           isPrivateChannel={privateChannel}
-          getMessagesRef={this.getMessagesRef}
+          getMessageRef={this.getMessagesRef}
         />
       </React.Fragment>
     );
